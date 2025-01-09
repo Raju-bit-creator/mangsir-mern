@@ -1,12 +1,14 @@
 import React from "react";
 
-const Navbar = ({ title }) => {
+const Navbar = (props) => {
   return (
     <div>
-      <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+      <nav
+        className={`navbar navbar-expand-lg navbar-${props.mode} bg-${props.mode}`}
+      >
         <div className="container-fluid">
           <a className="navbar-brand" href="#">
-            {title}
+            {props.title}
           </a>
           <button
             className="navbar-toggler"
@@ -62,7 +64,9 @@ const Navbar = ({ title }) => {
                 </ul>
               </li>
             </ul>
-            <button className="btn btn-primary">Mode </button>
+            <button className="btn btn-primary" onClick={props.toggleMode}>
+              {props.text}
+            </button>
             {/* <form className="d-flex">
               <input
                 className="form-control me-2"
