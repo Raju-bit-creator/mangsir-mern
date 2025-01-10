@@ -16,6 +16,9 @@ function App() {
       type: type,
       message: message,
     });
+    setTimeout(() => {
+      setAlert(null);
+    }, 3000);
   };
 
   const toggleMode = () => {
@@ -38,7 +41,7 @@ function App() {
         text={text}
         mode={mode}
       />
-      <Alert alert={alert} showAlert={showAlert} />
+      <Alert alert={alert} />
       <div className="card">
         <button className="mt-4" onClick={handleCount}>
           click me !
