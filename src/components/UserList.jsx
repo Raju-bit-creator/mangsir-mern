@@ -4,13 +4,13 @@ import { useNavigate } from "react-router-dom";
 const UserList = () => {
   const navigate = useNavigate();
   const users = [
-    { id: 1, name: "Jhon" },
-    { id: 2, name: "Ramesh" },
-    { id: 3, name: "Ram" },
-    { id: 4, name: "Sanjaya" },
+    { _id: 1, name: "Jhon", address: "kathmandu" },
+    { _id: 2, name: "Ramesh", address: "pokhara" },
+    { _id: 3, name: "Ram", address: "Bhaktapur" },
+    { _id: 4, name: "Sanjaya", address: "lalitpur" },
   ];
-  const handleUser = (userId, userName) => {
-    navigate(`/${userId}/${userName}`);
+  const handleUser = (user_Id, userName) => {
+    navigate(`/${user_Id}/${userName}`);
   };
   return (
     <div className=" container mt-5">
@@ -18,7 +18,7 @@ const UserList = () => {
       <ul className="user-list">
         {users.map((user) => {
           return (
-            <li onClick={() => handleUser(user.id, user.name)} key={user.id}>
+            <li onClick={() => handleUser(user._id, user.name)} key={user._id}>
               {user.name}
             </li>
           );
