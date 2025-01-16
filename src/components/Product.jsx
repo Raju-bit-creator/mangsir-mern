@@ -7,6 +7,7 @@ const Product = () => {
       setProduct("fruits");
     }, 3000);
   }, []);
+  
   return <div className="container p-4">This is : {product}</div>;
 };
 

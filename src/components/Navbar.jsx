@@ -44,6 +44,11 @@ const Navbar = (props) => {
                   Users
                 </Link>
               </li>
+              <li className="nav-item">
+                <Link className="nav-link" to="/sign-up">
+                  Sign Up
+                </Link>
+              </li>
               <li className="nav-item dropdown">
                 <a
                   className="nav-link dropdown-toggle"
