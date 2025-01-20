@@ -11,6 +11,7 @@ import User from "./components/User";
 import Product from "./components/Product";
 import Signup from "./components/Signup";
 import Login from "./components/Login";
+import ProductState from "./context/ProductState";
 
 function App() {
   const [count, setCount] = useState(2);
@@ -44,25 +45,27 @@ function App() {
 
   return (
     <>
-      <Router>
-        <Navbar
-          title="hamro bazzar"
-          toggleMode={toggleMode}
-          text={text}
-          mode={mode}
-        />
-        <Alert alert={alert} />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="/users" element={<UserList />} />
-          <Route path="/product" element={<Product />} />
-          <Route path="/:user_Id/:userName" element={<User />} />
-          <Route path="/sign-up" element={<Signup />} />
-          <Route path="/login" element={<Login />} />
-        </Routes>
-      </Router>
+      <ProductState>
+        <Router>
+          <Navbar
+            title="hamro bazzar"
+            toggleMode={toggleMode}
+            text={text}
+            mode={mode}
+          />
+          <Alert alert={alert} />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/users" element={<UserList />} />
+            <Route path="/product" element={<Product />} />
+            <Route path="/:user_Id/:userName" element={<User />} />
+            <Route path="/sign-up" element={<Signup />} />
+            <Route path="/login" element={<Login />} />
+          </Routes>
+        </Router>
+      </ProductState>
     </>
   );
 }
