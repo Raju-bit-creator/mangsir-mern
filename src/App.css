@@ -1,3 +1,7 @@
 .form-image img {
   width: 100%;
 }
+.title {
+  text-align: center;
+  margin: 20px 0px;
+}
