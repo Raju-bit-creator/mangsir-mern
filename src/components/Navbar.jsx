@@ -1,4 +1,5 @@
 import React from "react";
+import { FaCartShopping } from "react-icons/fa6";
 import { Link } from "react-router-dom";
 
 const Navbar = (props) => {
@@ -49,37 +50,16 @@ const Navbar = (props) => {
                   Sign Up
                 </Link>
               </li>
-              <li className="nav-item dropdown">
-                <a
-                  className="nav-link dropdown-toggle"
-                  href="#"
-                  id="navbarDropdown"
-                  role="button"
-                  data-bs-toggle="dropdown"
-                  aria-expanded="false"
-                >
-                  Dropdown
-                </a>
-                <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <li>
-                    <a className="dropdown-item" href="#">
-                      Action
-                    </a>
-                  </li>
-                  <li>
-                    <a className="dropdown-item" href="#">
-                      Another action
-                    </a>
-                  </li>
-
-                  <li>
-                    <a className="dropdown-item" href="#">
-                      Something else here
-                    </a>
-                  </li>
-                </ul>
-              </li>
             </ul>
+            <button
+              type="button"
+              class="btn btn-primary position-relative mx-4"
+            >
+              <FaCartShopping />
+              <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                0<span class="visually-hidden">unread messages</span>
+              </span>
+            </button>
             <button className="btn btn-primary" onClick={props.toggleMode}>
               {props.text}
             </button>
