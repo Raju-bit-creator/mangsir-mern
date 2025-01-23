@@ -4,16 +4,17 @@ import s1 from "../assets/cat.jpg";
 
 const About = () => {
   const context = useContext(productContext);
-  const { product, article, fetchData } = context;
+  const {
+    state: { cart },
+    dispatch,
+    product,
+  } = context;
   console.log("this is my first product ", product);
-  console.log("articles", article);
+  // console.log("articles", article);
 
-  useEffect(() => {
-    fetchData();
-  }, []);
-  const handleAddToCart = () => {
-    console.log("add to cart click");
-  };
+  // useEffect(() => {
+  //   fetchData();
+  // }, []);
 
   return (
     <div className="container mt-4">
@@ -21,30 +22,51 @@ const About = () => {
         <div className="title">
           <h4>My products</h4>
         </div>
-        {article &&
-          article.map((p) => {
+        {product &&
+          product.map((item) => {
             return (
               <div className="col-md-3">
-                <div key={p.id}>
+                <div key={item.id}>
                   <div className="card">
                     <img
-                      src={p.urlToImage || s1}
+                      src={item.urlToImage || s1}
                       className="card-img-top"
                       alt="card image"
                     />
                     <div className="card-body">
-                      <h5 className="card-title">{p.title || "title"}</h5>
+                      <h5 className="card-title">{item.title || "title"}</h5>
                       <p className="card-text">
-                        {p.description || "follow me for more news updates"}
+                        {item.description || "follow me for more news updates"}
                       </p>
-                      <a
-                        href="#"
-                        target="blank"
-                        onClick={handleAddToCart}
-                        className="btn btn-primary"
-                      >
-                        Add to cart
-                      </a>
+                      <p className="card-text">
+                        Rs. {item.price || "follow me for more news updates"}
+                      </p>
+                      {/* something?():() */}
+                      {cart && cart.some((p) => p.id === item.id) ? (
+                        <button
+                          className="btn btn-danger"
+                          onClick={() => {
+                            dispatch({
+                              type: "REMOVE_FROM_CART",
+                              payload: item,
+                            });
+                          }}
+                        >
+                          Remove from cart
+                        </button>
+                      ) : (
+                        <button
+                          className="btn btn-primary"
+                          onClick={() => {
+                            dispatch({
+                              type: "ADD_TO_CART",
+                              payload: item,
+                            });
+                          }}
+                        >
+                          Add to cart
+                        </button>
+                      )}
                     </div>
                   </div>
                 </div>

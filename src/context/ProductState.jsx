@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useReducer, useState } from "react";
 import productContext from "./ProductContext";
+import { cartReducer } from "./Reducer";
 
 const ProductState = (props) => {
   const p1 = {
@@ -37,34 +38,12 @@ const ProductState = (props) => {
     },
   ];
   const [product, setProduct] = useState(products);
-  const [article, setArticle] = useState([]);
-
-  // useEffect=(()=>{
-
-  // },[])
-  // setTimeout(() => {
-  //   setProduct({
-  //     name: "apple",
-  //     price: 200,
-  //   });
-  // }, 3000);
-  const fetchData = async () => {
-    try {
-      const response = await fetch(
-        "https://newsapi.org/v2/top-headlines?country=us&apiKey=d125d26fbc6d49728775e0b977bddc5a"
-      );
-      if (!response.ok) {
-        throw new error("api not working");
-      }
-      const data = await response.json();
-      setArticle(data.articles);
-      console.log("this is my response", data);
-    } catch (error) {
-      throw new error("internal server error");
-    }
-  };
+  const [state, dispatch] = useReducer(cartReducer, {
+    products: product,
+    cart: [],
+  });
   return (
-    <productContext.Provider value={{ product, article, fetchData }}>
+    <productContext.Provider value={{ product, state, dispatch }}>
       {props.children}
     </productContext.Provider>
   );

@@ -53,11 +53,11 @@ const Navbar = (props) => {
             </ul>
             <button
               type="button"
-              class="btn btn-primary position-relative mx-4"
+              className="btn btn-primary position-relative mx-4"
             >
               <FaCartShopping />
-              <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                0<span class="visually-hidden">unread messages</span>
+              <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                0<span className="visually-hidden">unread messages</span>
               </span>
             </button>
             <button className="btn btn-primary" onClick={props.toggleMode}>
