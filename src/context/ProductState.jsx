@@ -3,34 +3,30 @@ import productContext from "./ProductContext";
 import { cartReducer } from "./Reducer";
 
 const ProductState = (props) => {
-  const p1 = {
-    name: "orange",
-    price: 100,
-  };
   const products = [
     {
-      id: 1,
+      _id: 1,
       title: "sweater",
       description: "this is a woolen sweater",
       price: 1000,
       instock: 5,
     },
     {
-      id: 1,
+      _id: 2,
       title: "jeans",
       description: "blue jeans",
       price: 500,
       instock: 5,
     },
     {
-      id: 1,
+      _id: 3,
       title: "tshirt ",
       description: "summer shirt",
       price: 400,
       instock: 5,
     },
     {
-      id: 1,
+      _id: 4,
       title: "cap ",
       description: "summer cap",
       price: 400,

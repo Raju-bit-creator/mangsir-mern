@@ -1,8 +1,15 @@
 import React from "react";
+import { useContext } from "react";
 import { FaCartShopping } from "react-icons/fa6";
 import { Link } from "react-router-dom";
+import productContext from "../context/ProductContext";
 
 const Navbar = (props) => {
+  const context = useContext(productContext);
+  const {
+    state: { cart },
+  } = context;
+
   return (
     <div>
       <nav
@@ -51,15 +58,18 @@ const Navbar = (props) => {
                 </Link>
               </li>
             </ul>
-            <button
-              type="button"
-              className="btn btn-primary position-relative mx-4"
-            >
-              <FaCartShopping />
-              <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                0<span className="visually-hidden">unread messages</span>
-              </span>
-            </button>
+            <Link to="/cartitems">
+              <button
+                type="button"
+                className="btn btn-primary position-relative mx-4"
+              >
+                <FaCartShopping />
+                <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                  {cart.length}
+                  <span className="visually-hidden">unread messages</span>
+                </span>
+              </button>
+            </Link>
             <button className="btn btn-primary" onClick={props.toggleMode}>
               {props.text}
             </button>

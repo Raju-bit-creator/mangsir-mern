@@ -12,6 +12,7 @@ import Product from "./components/Product";
 import Signup from "./components/Signup";
 import Login from "./components/Login";
 import ProductState from "./context/ProductState";
+import CartItems from "./components/cartItems";
 
 function App() {
   const [count, setCount] = useState(2);
@@ -63,6 +64,7 @@ function App() {
             <Route path="/:user_Id/:userName" element={<User />} />
             <Route path="/sign-up" element={<Signup />} />
             <Route path="/login" element={<Login />} />
+            <Route path="/cartitems" element={<CartItems />} />
           </Routes>
         </Router>
       </ProductState>
