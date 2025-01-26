@@ -9,7 +9,7 @@ const ProductState = (props) => {
       title: "sweater",
       description: "this is a woolen sweater",
       price: 1000,
-      instock: 5,
+      instock: 4,
     },
     {
       _id: 2,

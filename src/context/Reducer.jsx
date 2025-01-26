@@ -7,6 +7,11 @@ export const cartReducer = (state, action) => {
         ...state,
         cart: state.cart.filter((c) => c._id !== action.payload._id),
       };
+    case "UPDATE_CART_ITEM":
+      return {
+        ...state,
+        cart: state.cart.filter((c) => c._id !== action.payload._id),
+      };
 
     default:
       break;
