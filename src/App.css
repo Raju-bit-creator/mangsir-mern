@@ -1,10 +1,10 @@
 .form-image img {
   width: 100%;
 }
-.title {
+/* .title {
   text-align: center;
   margin: 20px 0px;
-}
+} */
 .product-list {
   list-style: none;
   border: 1px solid #000;

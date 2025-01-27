@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import hero from "../assets/cat.jpg";
 import productContext from "../context/ProductContext";
+import { MdDelete } from "react-icons/md";
 
 const CartItems = () => {
   const context = useContext(productContext);
@@ -8,6 +9,9 @@ const CartItems = () => {
     state: { cart },
     dispatch,
   } = context;
+  const Total = cart.reduce((acc, item) => acc + item.price * item.qty, 0);
+  console.log("this is total", Total);
+
   return (
     <div className="container cart-page mt-5">
       <div className="productcontainer-cart">
@@ -45,10 +49,29 @@ const CartItems = () => {
                       ))}
                     </select>
                   </div>
+                  <div className="col-md-2">
+                    <button
+                      type="button"
+                      className="btn btn-light"
+                      onClick={() =>
+                        dispatch({
+                          type: "REMOVE_FROM_CART",
+                          payload: item,
+                        })
+                      }
+                    >
+                      <MdDelete />
+                    </button>
+                  </div>
                 </div>
               </li>
             ))}
         </ul>
+      </div>
+      <div className="filter-summary">
+        <div className="title">Total items: {cart.length}</div>
+        <h4>Total: Rs. {Total}</h4>
+        <button className="btn btn-primary"> Proceed to checkout</button>
       </div>
     </div>
   );
