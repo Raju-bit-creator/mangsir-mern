@@ -10,7 +10,6 @@ const CartItems = () => {
     dispatch,
   } = context;
   const Total = cart.reduce((acc, item) => acc + item.price * item.qty, 0);
-  console.log("this is total", Total);
 
   return (
     <div className="container cart-page mt-5">
@@ -19,7 +18,7 @@ const CartItems = () => {
           {cart &&
             cart.map((item) => (
               <li key={item._id}>
-                <div className="row">
+                <div className="row cart-list">
                   <div className="col-md-2">
                     <img
                       src={hero}
@@ -39,7 +38,7 @@ const CartItems = () => {
                       onChange={(e) =>
                         dispatch({
                           type: "UPDATE_CART_ITEM",
-                          payload: { id: item._id, qty: e.target.value },
+                          payload: { _id: item._id, qty: e.target.value },
                         })
                       }
                       className="form_control"

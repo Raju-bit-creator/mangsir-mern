@@ -7,7 +7,14 @@
 } */
 .product-list {
   list-style: none;
-  border: 1px solid #000;
+  border: 1px solid #f7f0f0;
   padding: 10px 15px;
   align-items: center;
+}
+.cart-list {
+  margin-bottom: 20px;
+}
+.card-title {
+  display: flex;
+  justify-content: space-between;
 }

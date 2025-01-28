@@ -1,6 +1,7 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import productContext from "../context/ProductContext";
 import s1 from "../assets/cat.jpg";
+import { BsThreeDots } from "react-icons/bs";
 
 const About = () => {
   const context = useContext(productContext);
@@ -9,13 +10,23 @@ const About = () => {
     dispatch,
     product,
   } = context;
-  console.log("this is my first product ", product);
-  // console.log("articles", article);
-  console.log("cart items", cart);
+  const [menuVisible, setMenuVisible] = useState(false);
+  const [modalVisible, setModalVisibel] = useState(false);
+  const [selectedProduct, setSelectedProduct] = useState(null);
 
-  // useEffect(() => {
-  //   fetchData();
-  // }, []);
+  const toggleMenu = (id) => {
+    setMenuVisible((prevState) => ({
+      ...prevState,
+      [id]: !prevState[id],
+    }));
+  };
+  const openEditModal = (product) => {
+    setSelectedProduct(product);
+    setModalVisibel(true);
+  };
+  const handleDelete = () => {
+    console.log("deleting product");
+  };
 
   return (
     <div className="container mt-4">
@@ -35,7 +46,20 @@ const About = () => {
                       alt="card image"
                     />
                     <div className="card-body">
-                      <h5 className="card-title">{item.title || "title"}</h5>
+                      <div className="card-title">
+                        <h5 className="card-title">{item.title || "title"}</h5>
+                        <BsThreeDots onClick={() => toggleMenu(item._id)} />
+                        {menuVisible[item._id] && (
+                          <div className="menu-options">
+                            <button onClick={() => openEditModal(item)}>
+                              Edit
+                            </button>
+                            <button onClick={() => handleDelete(item._id)}>
+                              Delete
+                            </button>
+                          </div>
+                        )}
+                      </div>
                       <p className="card-text">
                         {item.description || "follow me for more news updates"}
                       </p>
