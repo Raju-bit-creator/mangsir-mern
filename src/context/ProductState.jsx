@@ -3,13 +3,13 @@ import productContext from "./ProductContext";
 import { cartReducer } from "./Reducer";
 
 const ProductState = (props) => {
-  const products = [
+  const prod = [
     {
       _id: 1,
       title: "sweater",
       description: "this is a woolen sweater",
       price: 1000,
-      instock: 4,
+      instock: 10,
     },
     {
       _id: 2,
@@ -33,7 +33,7 @@ const ProductState = (props) => {
       instock: 5,
     },
   ];
-  const [product, setProduct] = useState(products);
+  const [product, setProduct] = useState(prod);
   const [state, dispatch] = useReducer(cartReducer, {
     products: product,
     cart: [],

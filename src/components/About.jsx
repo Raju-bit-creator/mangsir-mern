@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import productContext from "../context/ProductContext";
 import s1 from "../assets/cat.jpg";
 import { BsThreeDots } from "react-icons/bs";
+import EditProductModal from "./EditProductModal";
 
 const About = () => {
   const context = useContext(productContext);
@@ -24,8 +25,18 @@ const About = () => {
     setSelectedProduct(product);
     setModalVisibel(true);
   };
-  const handleDelete = () => {
+  const closeEditModal = () => {
+    setModalVisibel(false);
+    setSelectedProduct(null);
+  };
+  const saveEdit = (updateData) => {
+    console.log("save edit");
+
+    // editProduct(selectedProduct._id, updateData)
+  };
+  const handleDelete = async (id) => {
     console.log("deleting product");
+    // await deleteProduct(id)
   };
 
   return (
@@ -94,6 +105,15 @@ const About = () => {
                       )}
                     </div>
                   </div>
+                  {modalVisible &&
+                    selectedProduct &&
+                    selectedProduct._id === item._id && (
+                      <EditProductModal
+                        product={selectedProduct}
+                        onClose={closeEditModal}
+                        onSave={saveEdit}
+                      />
+                    )}
                 </div>
               </div>
             );
