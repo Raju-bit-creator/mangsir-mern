@@ -15,7 +15,14 @@ const EditProductModal = ({ product, onClose, onSave }) => {
     onClose();
   };
   return (
-    <div className="modal show" style={{ display: "block" }}>
+    <div
+      className="modal open"
+      id="exampleModal"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+      style={{ display: "block" }}
+    >
       <div className=" modal-dialog">
         <div className="modal-content">
           <div className="modal-header">

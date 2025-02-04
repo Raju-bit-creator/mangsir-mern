@@ -10,6 +10,7 @@ const About = () => {
     state: { cart },
     dispatch,
     product,
+    allProduct,
   } = context;
   const [menuVisible, setMenuVisible] = useState(false);
   const [modalVisible, setModalVisibel] = useState(false);
@@ -38,6 +39,9 @@ const About = () => {
     console.log("deleting product");
     // await deleteProduct(id)
   };
+  useEffect(() => {
+    allProduct();
+  }, []);
 
   return (
     <div className="container mt-4">

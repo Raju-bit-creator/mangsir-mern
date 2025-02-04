@@ -38,8 +38,23 @@ const ProductState = (props) => {
     products: product,
     cart: [],
   });
+  const allProduct = async () => {
+    const response = await fetch(
+      "http://localhost:3000/api/product/getallproduct", //dummy api
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          "auth-token": localStorage.getItem("token"),
+        },
+      }
+    );
+    let data = await response.json();
+    console.log(data);
+    setProduct(data);
+  };
   return (
-    <productContext.Provider value={{ product, state, dispatch }}>
+    <productContext.Provider value={{ product, state, dispatch, allProduct }}>
       {props.children}
     </productContext.Provider>
   );
