@@ -1,11 +1,64 @@
-import React from "react";
+import React, { useState } from "react";
+import axios from "axios";
 
 const AddProduct = () => {
-  const handleSubmit = () => {
+  const [product, setProduct] = useState({
+    title: "",
+    description: "",
+    price: "",
+    instock: "",
+    image: "",
+  });
+
+  const handleSubmit = async (e) => {
     console.log("add product");
+    e.preventDefault();
+    const formData = new FormData();
+    formData.append("title", product.title);
+    formData.append("description", product.description);
+    formData.append("price", product.price);
+    formData.append("instock", product.instock);
+    if (product.image) {
+      formData.append("myfile", product.image);
+    }
+    try {
+      const response = await axios.post(
+        "http://localhost:5000/api/product/addproduct",
+        formData,
+        {
+          headers: {
+            "auth-token": localStorage.getItem("token"),
+          },
+        }
+      );
+      console.log(response.data);
+      //assignment add react tostify package in this project
+
+      setProduct({
+        title: "",
+        description: "",
+        price: "",
+        instock: "",
+        image: "",
+      });
+    } catch (error) {
+      console.error(error);
+    }
   };
   const handleChange = (e) => {
-    console.log("handle change");
+    // console.log("handle change");
+    if (e.target.type == "file") {
+      setProduct({
+        ...product,
+        [e.target.name]: e.target.files[0],
+      });
+      console.log(e.target.files[0]);
+    } else {
+      setProduct({
+        ...product,
+        [e.target.name]: e.target.value,
+      });
+    }
   };
   return (
     <div className="container mt-4">
@@ -18,7 +71,7 @@ const AddProduct = () => {
           <input
             type="text"
             name="title"
-            // value={Product.title}
+            value={product.title}
             onChange={handleChange}
             className="form-control"
           ></input>
@@ -28,7 +81,7 @@ const AddProduct = () => {
           <input
             type="text"
             name="description"
-            // value={Product.title}
+            value={product.description}
             onChange={handleChange}
             className="form-control"
           ></input>
@@ -38,7 +91,7 @@ const AddProduct = () => {
           <input
             type="number"
             name="price"
-            // value={Product.title}
+            value={product.price}
             onChange={handleChange}
             className="form-control"
           ></input>
@@ -48,7 +101,7 @@ const AddProduct = () => {
           <input
             type="number"
             name="instock"
-            // value={Product.title}
+            value={product.instock}
             onChange={handleChange}
             className="form-control"
           ></input>
@@ -59,7 +112,6 @@ const AddProduct = () => {
             type="file"
             name="image"
             multiple
-            // value={Product.title}
             onChange={handleChange}
             className="form-control"
             id="image"
