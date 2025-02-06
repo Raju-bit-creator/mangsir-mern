@@ -11,6 +11,7 @@ const About = () => {
     dispatch,
     product,
     allProduct,
+    editProduct,
   } = context;
   const [menuVisible, setMenuVisible] = useState(false);
   const [modalVisible, setModalVisibel] = useState(false);
@@ -33,7 +34,7 @@ const About = () => {
   const saveEdit = (updateData) => {
     console.log("save edit");
 
-    // editProduct(selectedProduct._id, updateData)
+    editProduct(selectedProduct._id, updateData);
   };
   const handleDelete = async (id) => {
     console.log("deleting product");
