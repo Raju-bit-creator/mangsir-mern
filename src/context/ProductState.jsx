@@ -78,9 +78,39 @@ const ProductState = (props) => {
     }
   };
 
+  const deleteProduct = async (id) => {
+    try {
+      const response = await fetch(
+        `http://localhost:5000/api/product/deleteproduct/${id}`,
+        {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+            "auth-token": localStorage.getItem("token"),
+          },
+        }
+      );
+      if (response.ok) {
+        console.log("product deleted succesfully!");
+      } else {
+        console.log("failed to delete the product");
+      }
+      allProduct();
+    } catch (error) {
+      console.error("internal server error");
+    }
+  };
+
   return (
     <productContext.Provider
-      value={{ product, state, dispatch, allProduct, editProduct }}
+      value={{
+        product,
+        state,
+        dispatch,
+        allProduct,
+        editProduct,
+        deleteProduct,
+      }}
     >
       {props.children}
     </productContext.Provider>

@@ -12,6 +12,7 @@ const About = () => {
     product,
     allProduct,
     editProduct,
+    deleteProduct,
   } = context;
   const [menuVisible, setMenuVisible] = useState(false);
   const [modalVisible, setModalVisibel] = useState(false);
@@ -38,7 +39,7 @@ const About = () => {
   };
   const handleDelete = async (id) => {
     console.log("deleting product");
-    // await deleteProduct(id)
+    await deleteProduct(id);
   };
   useEffect(() => {
     allProduct();
