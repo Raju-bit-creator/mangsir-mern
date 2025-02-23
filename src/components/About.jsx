@@ -52,15 +52,18 @@ const About = () => {
           <h4>My products</h4>
         </div>
         {product &&
-          product.map((item) => {
+          product?.map((item) => {
             return (
               <div className="col-md-3">
                 <div key={item._id}>
                   <div className="card">
-                    <img
+                    {/* <img
                       src={item.urlToImage || s1}
                       className="card-img-top"
                       alt="card image"
+                    /> */}
+                    <img
+                      src={`http://localhost:5000/uploads/${item.image[0]}`}
                     />
                     <div className="card-body">
                       <div className="card-title">
