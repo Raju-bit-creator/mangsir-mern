@@ -38,9 +38,9 @@ const ProductState = (props) => {
     products: product,
     cart: [],
   });
-  const allProduct = async () => {
+  const allProduct = async (searchQuery = "") => {
     const response = await fetch(
-      "http://localhost:5000/api/product/getallproduct", //dummy api
+      `http://localhost:5000/api/product/getallproduct?searchQuery=${searchQuery}`, //dummy api
       {
         method: "GET",
         headers: {

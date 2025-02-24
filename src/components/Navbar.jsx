@@ -1,14 +1,28 @@
-import React from "react";
+import React, { useState } from "react";
 import { useContext } from "react";
 import { FaCartShopping } from "react-icons/fa6";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import productContext from "../context/ProductContext";
 
 const Navbar = (props) => {
+  const [searchQuery, setSearchQuery] = useState("");
   const context = useContext(productContext);
+  const navigate = useNavigate();
   const {
     state: { cart },
   } = context;
+
+  const handleSearchChange = (event) => {
+    setSearchQuery(event.target.value);
+  };
+  const handleSearchSubmit = (event) => {
+    event.preventDefault();
+    if (searchQuery.trim()) {
+      navigate(`/search/${searchQuery}`);
+    } else {
+      navigate("/");
+    }
+  };
 
   return (
     <div>
@@ -39,7 +53,7 @@ const Navbar = (props) => {
               </li>
               <li className="nav-item">
                 <Link className="nav-link" to="/about">
-                  About
+                  Profile
                 </Link>
               </li>
               <li className="nav-item">
@@ -58,6 +72,19 @@ const Navbar = (props) => {
                 </Link>
               </li>
             </ul>
+            <form onSubmit={handleSearchSubmit} className="d-flex">
+              <input
+                className="form-control me-2"
+                type="search"
+                placeholder="Search"
+                aria-label="Search"
+                value={searchQuery}
+                onChange={handleSearchChange}
+              />
+              <button className="btn btn-outline-success" type="submit">
+                Search
+              </button>
+            </form>
             <Link to="/cartitems">
               <button
                 type="button"
@@ -73,17 +100,6 @@ const Navbar = (props) => {
             <button className="btn btn-primary" onClick={props.toggleMode}>
               {props.text}
             </button>
-            {/* <form className="d-flex">
-              <input
-                className="form-control me-2"
-                type="search"
-                placeholder="Search"
-                aria-label="Search"
-              />
-              <button className="btn btn-outline-success" type="submit">
-                Search
-              </button>
-            </form> */}
           </div>
         </div>
       </nav>

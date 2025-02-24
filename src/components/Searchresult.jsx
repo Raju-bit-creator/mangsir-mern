@@ -79,17 +79,6 @@ const About = () => {
                     <div className="card-body">
                       <div className="card-title">
                         <h5 className="card-title">{item.title || "title"}</h5>
-                        <BsThreeDots onClick={() => toggleMenu(item._id)} />
-                        {menuVisible[item._id] && (
-                          <div className="menu-options">
-                            <button onClick={() => openEditModal(item)}>
-                              Edit
-                            </button>
-                            <button onClick={() => handleDelete(item._id)}>
-                              Delete
-                            </button>
-                          </div>
-                        )}
                       </div>
                       <p className="card-text">
                         {item.description || "follow me for more news updates"}
